@@ -1,4 +1,9 @@
-﻿p.comment-date{
+﻿p.comment-date {
     font-style: italic;
     color: #B3A6A6;
+}
+
+.field-validation-error {
+    color: red;
+    display: block;
 }
