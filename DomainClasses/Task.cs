@@ -11,6 +11,7 @@ namespace DomainClasses
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public String Title {get; set;}
         public String Description { get; set; }
         public int Time { get; set; }
