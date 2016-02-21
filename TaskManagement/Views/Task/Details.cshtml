@@ -1,0 +1,80 @@
+﻿@model DomainClasses.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AsignedTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AsignedTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <h2>Comments</h2>
+@foreach (var comment in Model.comments)
+{
+    <p>@Html.DisplayFor(commentItem => comment.Text)</p>
+    <p>@Html.DisplayFor(commentItem => comment.PostedAt)</p>
+     @Html.ActionLink("Edit", "Edit", "Comment", new { id = comment.Id }, null) 
+    <br />
+     @Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.Id, taskId=Model.Id }, null)
+    <hr />
+}
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Add new comment", "Create", "Comment", new { id = Model.Id }, null) |
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>
