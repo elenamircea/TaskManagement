@@ -216,3 +216,5 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.mdf
+TaskManagement/App_Data/DataLayer.EntityFrameworkContext.mdf
+TaskManagement/App_Data/DataLayer.EntityFrameworkContext_log.ldf
