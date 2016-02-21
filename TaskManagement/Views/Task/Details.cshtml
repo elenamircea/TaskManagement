@@ -69,7 +69,7 @@
         <p class="comment-date">@Html.DisplayFor(commentItem => comment.PostedAt)</p>
         <div class="row">
             <div class="col-md-1">
-                <a href="@Url.Action("Edit", "Comment", new { id = comment.Id })">
+                <a href="@Url.Action("Edit", "Comment", new { id = comment.Id, taskId = Model.Id })">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     Edit
                 </a>

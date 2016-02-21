@@ -51,8 +51,9 @@ namespace TaskManagement.Controllers
 
         //
         // GET: /Comment/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, int taskId)
         {
+            ViewBag.taskId = taskId;
             CommentRepository commentRepository = new CommentRepository();
             var comment = commentRepository.Search(id);
             return View(comment);
