@@ -44,12 +44,14 @@ namespace DataLayer
             }
         }
 
-        public void Delete(int id) {//TODO!!!!sa sterg comentariile atunci cand sterg un task
+        public void Delete(int id) {
             var db = new EntityFrameworkContext();
             Task task = new Task {Id=id };
             db.TaskList.Attach(task);
             db.TaskList.Remove(task);
             db.SaveChanges();
+            CommentRepository commentRepository = new CommentRepository();
+            commentRepository.DeleteComments(id);
         }
     }
 }

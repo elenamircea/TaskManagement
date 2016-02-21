@@ -76,5 +76,17 @@ namespace DataLayer
             db.CommentList.Remove(comment);
             db.SaveChanges();
         }
+
+        public void DeleteComments(int taskId)
+        {
+            var db = new EntityFrameworkContext();
+            var commentsList = (from comment in db.CommentList
+                        where comment.TaskId == taskId
+                        select comment).ToList();
+            foreach (var c in commentsList)
+            {
+                Delete(c.Id);
+            }
+        }
     }
 }
