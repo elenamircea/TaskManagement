@@ -12,7 +12,6 @@ namespace TaskManagement.Controllers
     {
         //
         // GET: /Task/
-        [Authorize]
         public ActionResult Index()
         {
             TaskRepository taskRepository = new TaskRepository();
