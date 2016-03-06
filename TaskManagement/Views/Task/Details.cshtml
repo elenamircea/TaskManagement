@@ -87,7 +87,7 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Add new comment", "Create", "Comment", new { id = Model.Id }, null) |
+    @Html.ActionLink("Add new comment", "Create", "Comment", new { id = Model.Id, taskId=Model.Id }, null) |
 
     @Html.ActionLink("Back to List", "Index")
 </p>

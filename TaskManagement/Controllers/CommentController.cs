@@ -26,8 +26,9 @@ namespace TaskManagement.Controllers
 
         //
         // GET: /Comment/Create
-        public ActionResult Create()
+        public ActionResult Create(int taskId)
         {
+            ViewBag.taskId = taskId;
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace TaskManagement.Controllers
         }
 
         //
-        // GET: /Comment/Edit/5
+        // GET: /Comment/Edit/5?taskId=3
         public ActionResult Edit(int id, int taskId)
         {
             ViewBag.taskId = taskId;
