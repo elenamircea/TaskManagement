@@ -7,3 +7,21 @@
     color: red;
     display: block;
 }
+
+.validation-summary-errors li
+{
+    color:red;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top
+{
+    background-color:#193675;
+}
+
+.navbar.navbar-inverse .navbar-brand{
+    color:#C5BCBC;
+}
+
+.navbar.navbar-inverse .navbar-brand:hover {
+    color:white;
+}
