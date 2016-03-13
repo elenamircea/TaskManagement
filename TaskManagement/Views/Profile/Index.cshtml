@@ -1,0 +1,17 @@
+﻿@model DomainClasses.AppUser
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>User Profile</h4>
+    <hr />
+    <p>@Html.DisplayFor(model => model.UserName)</p>
+    <a href="PasswordChange">
+        Change password
+    </a>
+</div>
+
