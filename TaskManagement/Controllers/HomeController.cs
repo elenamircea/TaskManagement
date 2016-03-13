@@ -78,7 +78,7 @@ namespace TaskManagement.Controllers
 
         }
 
-        // GET: /Home/Register
+        // GET: /Home/Logout
         public ActionResult LogOut()
         {
             var authenticationManager = HttpContext.GetOwinContext().Authentication;
