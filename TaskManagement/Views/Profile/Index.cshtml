@@ -10,8 +10,8 @@
     <h4>User Profile</h4>
     <hr />
     <p>@Html.DisplayFor(model => model.UserName)</p>
-    <a href="PasswordChange">
-        Change password
-    </a>
+
+        @Html.ActionLink("Change password", "PasswordChange", "Profile")
+
 </div>
 

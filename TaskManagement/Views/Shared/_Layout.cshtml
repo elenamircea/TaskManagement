@@ -19,12 +19,15 @@
                 </button>
                 @Html.ActionLink("Task Management", "Index", "Task", null, new { @class = "navbar-brand" })
             </div>
+            @if(Request.IsAuthenticated)
+            {
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Profile/Index">Profile</a></li>
+                    <li><a href="/Profile/Index">Profile</a></li>
                     <li><a href="/Home/Logout">Logout</a></li>                
                 </ul>
             </div>
+                }
         </div>
     </div>
 
