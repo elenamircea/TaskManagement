@@ -11,12 +11,13 @@ namespace TaskManagement.Controllers
 {
     public class TaskController : Controller
     {
+        TaskRepository taskRepository = TaskRepository.getInstance();
         //
         // GET: /Task/
         [Authorize]
         public ActionResult Index()
         {
-            TaskRepository taskRepository = new TaskRepository();
+            
             var userId = User.Identity.GetUserId();
             List<Task> list = taskRepository.getAll(userId);
             return View(list);
@@ -26,7 +27,7 @@ namespace TaskManagement.Controllers
         // GET: /Task/Details/5
         public ActionResult Details(int id)
         {
-            TaskRepository taskRepository = new TaskRepository();
+            
             var task=taskRepository.Search(id); 
             return View(task);
         }
@@ -45,7 +46,7 @@ namespace TaskManagement.Controllers
         {
             try
             {
-                TaskRepository taskRepository = new TaskRepository();
+                
                 task.UserId = User.Identity.GetUserId();
 
                 taskRepository.Add(task);
@@ -62,7 +63,7 @@ namespace TaskManagement.Controllers
         // GET: /Task/Edit/5
         public ActionResult Edit(int id)
         {
-            TaskRepository taskRepository = new TaskRepository();
+            
             var task = taskRepository.Search(id);
             return View(task);
             //return View(taskRepository.Search(id));
@@ -75,7 +76,7 @@ namespace TaskManagement.Controllers
         {
             try
             {
-                TaskRepository taskRepository = new TaskRepository();
+                
                 taskRepository.Edit(id,task);
 
                 return RedirectToAction("Index");
@@ -90,7 +91,7 @@ namespace TaskManagement.Controllers
         // GET: /Task/Delete/5
         public ActionResult Delete(int id)
         {
-            TaskRepository taskRepository = new TaskRepository();
+            
             taskRepository.Delete(id);
             return RedirectToAction("Index");
         }
