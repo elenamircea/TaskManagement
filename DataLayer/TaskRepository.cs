@@ -8,6 +8,22 @@ namespace DataLayer
 {
     public class TaskRepository
     {
+        private static TaskRepository singleton;
+
+        private TaskRepository()
+        {
+
+        }
+
+        public static TaskRepository getInstance()
+        {
+            if(singleton==null)
+            {
+                singleton = new TaskRepository();
+            }
+            return singleton;
+        }
+
         public List<Task> getAll(string userId)
         {
             var db = new EntityFrameworkContext();

@@ -11,6 +11,8 @@ namespace TaskManagement.Controllers
 {
     public class CommentController : Controller
     {
+
+        CommentRepository commentRepository = new CommentRepository();
         //
         // GET: /Comment/
         public ActionResult Index()
@@ -41,7 +43,7 @@ namespace TaskManagement.Controllers
         {
             try
             {
-                CommentRepository commentRepository = new CommentRepository();
+                
                 comment.UserId = User.Identity.GetUserId();
                 UserRepository userRepository = new UserRepository();
                 var currentUser = userRepository.getUser(comment.UserId);
@@ -61,7 +63,7 @@ namespace TaskManagement.Controllers
         public ActionResult Edit(int id, int taskId)
         {
             ViewBag.taskId = taskId;
-            CommentRepository commentRepository = new CommentRepository();
+            
             var comment = commentRepository.Search(id);
             return View(comment);
         }
@@ -73,7 +75,13 @@ namespace TaskManagement.Controllers
         {
             try
             {
-                CommentRepository commentRepository = new CommentRepository();
+                
+                var commentDB=commentRepository.Search(id);
+                if(commentDB.UserId!=User.Identity.GetUserId())
+                {
+                    ModelState.AddModelError("", "No rights to edit this comment!");
+                    return View();
+                }
                 commentRepository.Edit(id, comment);
 
                 return RedirectToAction("Details", "Task", new { id = comment.TaskId });
@@ -88,7 +96,13 @@ namespace TaskManagement.Controllers
         // GET: /Comment/Delete/5
         public ActionResult Delete(int id, int taskId)
         {
-            CommentRepository commentRepository = new CommentRepository();
+            
+            var commentDB = commentRepository.Search(id);
+            if (commentDB.UserId != User.Identity.GetUserId())
+            {
+                ModelState.AddModelError("", "No rights to delete this comment!");
+                return RedirectToAction("Details", "Task", new { id = taskId });
+            }
             commentRepository.Delete(id);
             return RedirectToAction("Details", "Task", new { id = taskId });
         }

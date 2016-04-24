@@ -11,7 +11,7 @@ namespace DataLayer
     {
         public void Add(Comment comment, int taskId)
         {
-            TaskRepository taskRepository = new TaskRepository();
+            TaskRepository taskRepository = TaskRepository.getInstance();
             var task=taskRepository.Search(taskId);
 
             if (task == null)
@@ -30,7 +30,7 @@ namespace DataLayer
 
         public List<Comment> getAll(int taskId)
         {
-            TaskRepository taskRepository = new TaskRepository();
+            TaskRepository taskRepository = TaskRepository.getInstance();
             var task = taskRepository.Search(taskId);
 
             if (task == null)
