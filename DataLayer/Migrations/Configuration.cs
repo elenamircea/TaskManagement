@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//probleme cu entity framework migrations=> tools->nuget package manager->pm console default project:DataLayer
+//update-database
+
 namespace DataLayer.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<DataLayer.EntityFrameworkContext>
