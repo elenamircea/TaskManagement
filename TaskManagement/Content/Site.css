@@ -3,6 +3,10 @@
     color: #B3A6A6;
 }
 
+p.comment-username{
+    font-weight: bold;
+}
+
 .field-validation-error {
     color: red;
     display: block;
