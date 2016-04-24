@@ -20,8 +20,9 @@ namespace DomainClasses
         [Display(Name = "Created at")]
         public DateTime CreatedAt { get; set; }
         [Display(Name = "Updated at")]
+        //public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
-
+        public string UserId { get; set; }
         public List<Comment> comments { get; set; }
     }
 }

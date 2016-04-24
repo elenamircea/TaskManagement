@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace TaskManagement.Controllers
 {
@@ -29,6 +30,7 @@ namespace TaskManagement.Controllers
         public ActionResult Create(int taskId)
         {
             ViewBag.taskId = taskId;
+
             return View();
         }
 
@@ -40,6 +42,10 @@ namespace TaskManagement.Controllers
             try
             {
                 CommentRepository commentRepository = new CommentRepository();
+                comment.UserId = User.Identity.GetUserId();
+                UserRepository userRepository = new UserRepository();
+                var currentUser = userRepository.getUser(comment.UserId);
+                comment.Username = currentUser.UserName;
                 commentRepository.Add(comment, id);
 
                 return RedirectToAction("Details", "Task", new { id=id});

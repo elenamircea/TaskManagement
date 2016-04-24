@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer;
 using DomainClasses;
+using Microsoft.AspNet.Identity;
 
 namespace TaskManagement.Controllers
 {
@@ -16,7 +17,8 @@ namespace TaskManagement.Controllers
         public ActionResult Index()
         {
             TaskRepository taskRepository = new TaskRepository();
-            List<Task> list = taskRepository.getAll();
+            var userId = User.Identity.GetUserId();
+            List<Task> list = taskRepository.getAll(userId);
             return View(list);
         }
 
@@ -44,6 +46,8 @@ namespace TaskManagement.Controllers
             try
             {
                 TaskRepository taskRepository = new TaskRepository();
+                task.UserId = User.Identity.GetUserId();
+
                 taskRepository.Add(task);
 
                 return RedirectToAction("Index");

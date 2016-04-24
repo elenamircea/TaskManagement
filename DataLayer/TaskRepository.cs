@@ -8,14 +8,17 @@ namespace DataLayer
 {
     public class TaskRepository
     {
-        public List<Task> getAll() {
+        public List<Task> getAll(string userId)
+        {
             var db = new EntityFrameworkContext();
             List<Task> list = (from task in db.TaskList
+                               where task.UserId == userId
                                select task).ToList();
             return list;
         }
 
-        public void Add(Task task) {
+        public void Add(Task task)
+        {
             var db = new EntityFrameworkContext();
             task.CreatedAt = DateTime.Now;
             task.UpdatedAt = DateTime.Now;
@@ -23,7 +26,8 @@ namespace DataLayer
             db.SaveChanges();
         }
 
-        public Task Search(int id) {
+        public Task Search(int id)
+        {
             var db = new EntityFrameworkContext();
             var taskQuery = (from task in db.TaskList.Include("comments")//am inclus comentariile, aduce doar primitive
                              where task.Id == id
@@ -31,7 +35,8 @@ namespace DataLayer
             return taskQuery;
         }
 
-        public void Edit(int id, Task updatedTask) {
+        public void Edit(int id, Task updatedTask)
+        {
             var db = new EntityFrameworkContext();
             var original = db.TaskList.Find(id);
 
@@ -44,9 +49,10 @@ namespace DataLayer
             }
         }
 
-        public void Delete(int id) {
+        public void Delete(int id)
+        {
             var db = new EntityFrameworkContext();
-            Task task = new Task {Id=id };
+            Task task = new Task { Id = id };
             db.TaskList.Attach(task);
             db.TaskList.Remove(task);
             db.SaveChanges();
