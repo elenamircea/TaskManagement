@@ -9,6 +9,21 @@ namespace DataLayer
 {
     public class UserRepository
     {
+        private static UserRepository singleton;
+
+        private UserRepository()
+        {
+
+        }
+
+        public static UserRepository getInstance()
+        {
+            if(singleton==null)
+            {
+                singleton = new UserRepository();
+            }
+            return singleton;
+        }
         public AppUser getUser(string userId)
         {
             var db = new EntityFrameworkContext();

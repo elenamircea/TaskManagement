@@ -12,7 +12,8 @@ namespace TaskManagement.Controllers
     public class CommentController : Controller
     {
 
-        CommentRepository commentRepository = new CommentRepository();
+        CommentRepository commentRepository = CommentRepository.getInstance();
+        
         //
         // GET: /Comment/
         public ActionResult Index()
@@ -45,7 +46,7 @@ namespace TaskManagement.Controllers
             {
                 
                 comment.UserId = User.Identity.GetUserId();
-                UserRepository userRepository = new UserRepository();
+                UserRepository userRepository = UserRepository.getInstance();
                 var currentUser = userRepository.getUser(comment.UserId);
                 comment.Username = currentUser.UserName;
                 commentRepository.Add(comment, id);

@@ -9,6 +9,21 @@ namespace DataLayer
 {
     public class CommentRepository
     {
+        private static CommentRepository singleton;
+
+        private CommentRepository()
+        {
+
+        }
+
+        public static CommentRepository getInstance()
+        {
+            if(singleton==null)
+            {
+                singleton = new CommentRepository();
+            }
+            return singleton;
+        }
         public void Add(Comment comment, int taskId)
         {
             TaskRepository taskRepository = TaskRepository.getInstance();

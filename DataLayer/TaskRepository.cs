@@ -72,7 +72,7 @@ namespace DataLayer
             db.TaskList.Attach(task);
             db.TaskList.Remove(task);
             db.SaveChanges();
-            CommentRepository commentRepository = new CommentRepository();
+            CommentRepository commentRepository = CommentRepository.getInstance();
             commentRepository.DeleteComments(id);
         }
     }

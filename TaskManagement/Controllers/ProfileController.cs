@@ -16,7 +16,7 @@ namespace TaskManagement.Controllers
         // GET: /Profile/
         public ActionResult Index()
         {
-            UserRepository userRepository = new UserRepository();
+            UserRepository userRepository = UserRepository.getInstance();
 
             var userId = User.Identity.GetUserId();
 
