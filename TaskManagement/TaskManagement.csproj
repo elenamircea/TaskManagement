@@ -154,9 +154,11 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\InviteTeamMemberModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PasswordChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -170,6 +172,10 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\PasswordChange.cshtml" />
+    <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Team\Create.cshtml" />
+    <Content Include="Views\Team\Edit.cshtml" />
+    <Content Include="Views\Team\Invite.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

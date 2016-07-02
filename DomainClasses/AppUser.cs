@@ -11,5 +11,6 @@ namespace DomainClasses
     {
         public List<Task> tasks { get; set; }
         public List<Comment> comments { get; set; }
+        public int? TeamId { get; set; }
     }
 }

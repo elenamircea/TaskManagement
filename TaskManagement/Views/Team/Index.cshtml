@@ -1,0 +1,56 @@
+﻿@model DomainClasses.Team
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    @if (Model != null)
+    {
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TeamLeaderEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TeamLeaderEmail)
+            </dd>
+
+        </dl>
+
+        <div>
+            <h4>Team Members</h4>
+            @foreach (var member in Model.TeamMembers)
+            {
+                <div>@member.UserName</div>
+            }
+        </div>
+    }
+    else
+    {
+        @Html.ActionLink("Create New Team", "Create")
+    }
+</div>
+<p>
+    @if (Model.TeamLeaderUserId == User.Identity.GetUserId())
+    {
+        <span>@Html.ActionLink("Invite Team Member", "Invite") |</span>
+    }
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to Tasks", "Index", "Task")
+</p>

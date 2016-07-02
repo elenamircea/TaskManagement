@@ -54,13 +54,13 @@ namespace TaskManagement.Controllers
 
         // Post: /Home/Register
         [HttpPost]
-        public async Task<ActionResult> Register(LoginViewModel model)
+        public async Task<ActionResult> Register(int? teamid,LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var userManager = AppUserManager.Create(null, HttpContext.GetOwinContext());
 
-                var user = new AppUser() { UserName = model.Email };
+                var user = new AppUser() { UserName = model.Email, TeamId=teamid };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
