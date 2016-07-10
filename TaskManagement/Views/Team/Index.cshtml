@@ -31,13 +31,16 @@
             </dd>
 
         </dl>
+        <hr />
+        <h4>Team Members</h4>
+        <div style="display:flex">
 
-        <div>
-            <h4>Team Members</h4>
-            @foreach (var member in Model.TeamMembers)
-            {
-                <div>@member.UserName</div>
-            }
+            <ul class="list-group">
+                @foreach (var member in Model.TeamMembers)
+                {
+                    <li class="list-group-item">@member.UserName</li>
+                }
+            </ul>
         </div>
     }
     else
@@ -46,6 +49,7 @@
     }
 </div>
 <p>
+    <br>
     @if (Model != null && Model.TeamLeaderUserId == User.Identity.GetUserId())
     {
         <span>@Html.ActionLink("Invite Team Member", "Invite") |</span>
@@ -56,4 +60,4 @@
         <span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |</span>
     }
     @Html.ActionLink("Back to Tasks", "Index", "Task")
-    </p>
+</p>
