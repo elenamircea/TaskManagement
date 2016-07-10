@@ -51,7 +51,7 @@
         <span>@Html.ActionLink("Invite Team Member", "Invite") |</span>
     }
 
-    @if (Model != null)
+    @if (Model != null && Model.TeamLeaderUserId == User.Identity.GetUserId())
     {
         <span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |</span>
     }

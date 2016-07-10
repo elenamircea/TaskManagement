@@ -93,9 +93,9 @@
                     Edit
                 </a>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 " >
                 @*@Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.Id, taskId = Model.Id }, null)*@
-                <a href="@Url.Action("Delete", "Comment", new { id = comment.Id, taskId = Model.Id })">
+                <a class="color-red" href="@Url.Action("Delete", "Comment", new { id = comment.Id, taskId = Model.Id })">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     Delete
                 </a>
