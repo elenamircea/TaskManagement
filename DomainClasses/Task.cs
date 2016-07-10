@@ -20,9 +20,12 @@ namespace DomainClasses
         [Display(Name = "Created at")]
         public DateTime CreatedAt { get; set; }
         [Display(Name = "Updated at")]
-        //public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public string UserId { get; set; }
+        [Display(Name = "Created by")]
+        public string CreatedBy { get; set; }
+        public int TeamId { get; set; }
+        //[Display(Name = "Task status")]
+        //public TaskStatus TaskStatus { get; set; }
         public List<Comment> comments { get; set; }
     }
 }

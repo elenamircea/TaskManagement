@@ -29,3 +29,11 @@ p.comment-username{
 .navbar.navbar-inverse .navbar-brand:hover {
     color:white;
 }
+
+.color-red {
+ color:red;
+}
+
+select.form-control{
+    width:25%;
+}

@@ -1,4 +1,7 @@
 ﻿@model DomainClasses.Task
+@using DataLayer
+@using Microsoft.AspNet.Identity;
+@using DomainClasses
 
 @{
     ViewBag.Title = "Edit";
@@ -10,13 +13,13 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Task</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model=>model.UserId)
+        @Html.HiddenFor(model => model.TeamId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -45,12 +48,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AsignedTo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AsignedTo)
+                @{
+    TeamRepository teamRepository = TeamRepository.getInstance();
+    var team = teamRepository.getTeamForUser(User.Identity.GetUserId());
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    if (team != null)
+    {
+        foreach (AppUser member in team.TeamMembers)
+        {
+            listItems.Add(new SelectListItem
+            {
+                Text = member.UserName,
+                Value = member.UserName
+            });
+        }
+    }
+                }
+                @Html.DropDownListFor(model => model.AsignedTo, listItems, "Select team member", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AsignedTo)
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

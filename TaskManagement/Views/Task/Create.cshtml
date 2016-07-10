@@ -1,4 +1,8 @@
 ﻿@model DomainClasses.Task
+    @using DataLayer
+@using Microsoft.AspNet.Identity;
+@using DomainClasses
+@using System.Web.Mvc.Html
 
 @{
     ViewBag.Title = "Create";
@@ -7,10 +11,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Task</h4>
         <hr />
@@ -43,24 +47,33 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AsignedTo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AsignedTo)
+                @{
+    TeamRepository teamRepository = TeamRepository.getInstance();
+    var team=teamRepository.getTeamForUser(User.Identity.GetUserId());
+    List<SelectListItem> listItems= new List<SelectListItem>();
+    if (team != null)
+    {
+        foreach (AppUser member in team.TeamMembers)
+        {
+            listItems.Add(new SelectListItem
+            {
+                Text = member.UserName,
+                Value = member.UserName
+            });
+        }
+    }
+                }
+                @Html.DropDownListFor(model => model.AsignedTo, listItems, "Select team member", new {@class="form-control"})
                 @Html.ValidationMessageFor(model => model.AsignedTo)
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TaskStatus, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt)
-                @Html.ValidationMessageFor(model => model.CreatedAt)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.UpdatedAt, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedAt)
-                @Html.ValidationMessageFor(model => model.UpdatedAt)
+                
+                @Html.EditorFor(model => model.TaskStatus)
+                @Html.ValidationMessageFor(model => model.TaskStatus)
             </div>
         </div>*@
 

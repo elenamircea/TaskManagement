@@ -24,11 +24,15 @@ namespace DataLayer
             return singleton;
         }
 
-        public List<Task> getAll(string userId)
+        public List<Task> getAll(int? teamId)
         {
+            if (teamId == null)
+            {
+                return new List<Task>();
+            }
             var db = new EntityFrameworkContext();
             List<Task> list = (from task in db.TaskList
-                               where task.UserId == userId
+                               where task.TeamId == teamId
                                select task).ToList();
             return list;
         }

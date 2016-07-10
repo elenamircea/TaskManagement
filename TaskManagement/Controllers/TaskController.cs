@@ -17,9 +17,9 @@ namespace TaskManagement.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            
-            var userId = User.Identity.GetUserId();
-            List<Task> list = taskRepository.getAll(userId);
+            UserRepository userRepository = UserRepository.getInstance();
+            var user = userRepository.getUser(User.Identity.GetUserId());
+            List<Task> list = taskRepository.getAll(user.TeamId);
             return View(list);
         }
 
@@ -46,9 +46,14 @@ namespace TaskManagement.Controllers
         {
             try
             {
-                
-                task.UserId = User.Identity.GetUserId();
-
+                UserRepository userRepository = UserRepository.getInstance();
+                var user = userRepository.getUser(User.Identity.GetUserId());
+                if (user.TeamId == null)
+                {
+                    return View();//TODO eroare noua echipa
+                }
+                task.TeamId = (int)user.TeamId;
+                task.CreatedBy = user.UserName;
                 taskRepository.Add(task);
 
                 return RedirectToAction("Index");
