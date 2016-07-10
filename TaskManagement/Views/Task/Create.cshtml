@@ -1,8 +1,10 @@
 ﻿@model DomainClasses.Task
-    @using DataLayer
+@using DataLayer
 @using Microsoft.AspNet.Identity;
 @using DomainClasses
 @using System.Web.Mvc.Html
+@using DomainClasses.Enums;
+@using TaskManagement.Utils;
 
 @{
     ViewBag.Title = "Create";
@@ -21,7 +23,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" }) 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title)
                 @Html.ValidationMessageFor(model => model.Title)
@@ -68,14 +70,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.TaskStatus, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.TaskStatus)
+                @Html.DropDownListFor(model => model.TaskStatus, Model.TaskStatus.ToSelectList(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TaskStatus)
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

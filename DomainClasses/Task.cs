@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DomainClasses.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainClasses
 {
@@ -24,8 +24,8 @@ namespace DomainClasses
         [Display(Name = "Created by")]
         public string CreatedBy { get; set; }
         public int TeamId { get; set; }
-        //[Display(Name = "Task status")]
-        //public TaskStatus TaskStatus { get; set; }
+        [Display(Name = "Task status")]
+        public TaskStatus TaskStatus { get; set; }
         public List<Comment> comments { get; set; }
     }
 }

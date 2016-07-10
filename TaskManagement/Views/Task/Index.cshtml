@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<DomainClasses.Task>
+@using TaskManagement.Utils;
+@using DomainClasses.Enums;
 
 @{
     ViewBag.Title = "Task";
@@ -15,6 +17,9 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.TaskStatus)
+        </th>
 
         <th>
             @Html.DisplayNameFor(model => model.AsignedTo)
@@ -34,14 +39,28 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
 
+            <td>
+                @if (item.TaskStatus == TaskStatus.close)
+                {
+                    <span class="color-red">Closed</span>
+                }
+                @if (item.TaskStatus == TaskStatus.open)
+                {
+                    <span class="color-green">Open</span>
+                }
+                @if (item.TaskStatus == TaskStatus.inTesting)
+                {
+                    <span class="color-blue">In testing</span>
+                }
+                @if (item.TaskStatus == TaskStatus.inProgress)
+                {
+                    <span class="color-violet">In progress</span>
+                }
+            </td>
 
             <td>
-                @*@if(item.TaskStatus == 'Open'){
-                        <span class="color-red">Open</span>
-                    }
-                    @if(item.TaskStatus == 'Closed'){
-                        <span class="color-green">Closed</span>
-                    }*@
+
+           
                 @Html.DisplayFor(modelItem => item.AsignedTo)
             </td>
 

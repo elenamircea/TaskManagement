@@ -36,7 +36,8 @@ namespace TaskManagement.Controllers
         // GET: /Task/Create
         public ActionResult Create()
         {
-            return View();
+            var task = new Task() { TaskStatus = DomainClasses.Enums.TaskStatus.open };
+            return View(task);
         }
 
         //

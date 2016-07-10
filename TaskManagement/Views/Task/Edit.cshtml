@@ -2,6 +2,7 @@
 @using DataLayer
 @using Microsoft.AspNet.Identity;
 @using DomainClasses
+@using TaskManagement.Utils;
 
 @{
     ViewBag.Title = "Edit";
@@ -20,6 +21,7 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.TeamId)
+        @Html.HiddenFor(model => model.CreatedBy)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -69,7 +71,13 @@
             </div>
         </div>
 
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TaskStatus, Model.TaskStatus.ToSelectList(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TaskStatus)
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

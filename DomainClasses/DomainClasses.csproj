@@ -79,6 +79,7 @@
     <Compile Include="AppRole.cs" />
     <Compile Include="AppUser.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Enums\TaskStatusEnum.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
