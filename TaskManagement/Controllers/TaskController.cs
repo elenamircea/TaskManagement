@@ -51,7 +51,8 @@ namespace TaskManagement.Controllers
                 var user = userRepository.getUser(User.Identity.GetUserId());
                 if (user.TeamId == null)
                 {
-                    return View();//TODO eroare noua echipa
+                    ModelState.AddModelError("", "Not allowed to create task! Not a member of any team!");
+                    return View(task);
                 }
                 task.TeamId = (int)user.TeamId;
                 task.CreatedBy = user.UserName;
